@@ -4,6 +4,8 @@ import uuid
 # Create your models here.
 class POST(models.Model):
     title = models.CharField(max_length=100)
+    artist = models.CharField(max_length=500, null=True)
+    url = models.URLField(max_length=500, null=True) 
     image = models.URLField(max_length=100)
     body  = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
