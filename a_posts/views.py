@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from a_posts.models import *
 from a_posts.forms import *
 import requests
@@ -39,7 +39,7 @@ def post_create_view(request):
 
 
 def post_delete_view(request,pk):
-    post = POST.objects.get(id=pk)
+    post = get_object_or_404(POST,id=pk)
     
     if request.method== 'POST':
         post.delete()
@@ -50,7 +50,7 @@ def post_delete_view(request,pk):
 
 
 def edit_post_view(request,pk):
-    post = POST.objects.get(id=pk)
+    post = get_object_or_404(POST,id=pk)
     form = PostEditForm(instance=post)
     
     if request.method== 'POST':
@@ -67,5 +67,6 @@ def edit_post_view(request,pk):
     return render(request,'a_posts/post_edit.html',context)
 
 def post_detail_page_view(request,pk):
-    post = POST.objects.get(id=pk)
+    # post = POST.objects.get(id=pk)
+    post = get_object_or_404(POST,id=pk)
     return render(request,'a_posts/post_detail.html',{'post':post})
