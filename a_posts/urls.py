@@ -7,5 +7,6 @@ urlpatterns = [
     path('edit/<pk>/',edit_post_view, name='post-edit'),
     
     path('detail_post_page/<pk>/',post_detail_page_view, name='post'),
+    path('category/<tag>/',category_view, name='category'),
     
 ]

@@ -10,6 +10,9 @@ def home(request):
     posts = POST.objects.all()
     return render(request,'a_posts/home.html',{'posts':posts})
 
+def category_view(request,tag):
+    posts= POST.objects.filter(tags__slug=tag)
+    return render(request,'a_posts/home.html',{'posts':posts})
 
 def post_create_view(request):
     form = PostCreateForm()
