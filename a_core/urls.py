@@ -20,6 +20,6 @@ from a_posts.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',home,name='home'),
+    path('',home_view,name='home'),
     path('post/',include('a_posts.urls')),
 ]
