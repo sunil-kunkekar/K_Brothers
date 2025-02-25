@@ -1,8 +1,8 @@
 from django.urls import path
 from a_posts.views import *
-from django.conf.urls.static import static
-from django.conf import settings
 
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('create/', post_create_view, name='post-create'),
     path('delete/<pk>/', post_delete_view, name='post-delete'),
@@ -12,5 +12,4 @@ urlpatterns = [
     path('category/<tag>/',home_view, name='category'),
     
 ]
-# Only used when DEBUG=True, whitenoise can serve files when DEBUG=False
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from a_posts.views import *
-
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home_view,name='home'),
     path('post/',include('a_posts.urls')),
 ]
+# Only used when DEBUG=True, whitenoise can serve files when DEBUG=False
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
