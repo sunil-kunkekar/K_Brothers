@@ -24,6 +24,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('',home_view,name='home'),
     path('post/',include('a_posts.urls')),
+    path('user/',include('a_users.urls')),
 ]
 # Only used when DEBUG=True, whitenoise can serve files when DEBUG=False
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
