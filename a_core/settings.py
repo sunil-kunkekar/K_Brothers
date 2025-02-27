@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'a_posts',
     'a_users',
 ]
+
 SITE_ID =1
 
 MIDDLEWARE = [
