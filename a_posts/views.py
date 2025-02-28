@@ -4,6 +4,7 @@ from a_posts.forms import *
 import requests
 from bs4 import BeautifulSoup
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home_view(request, tag=None):
@@ -20,7 +21,7 @@ def home_view(request, tag=None):
     }
     return render(request,'a_posts/home.html',context)
 
-
+@login_required
 def post_create_view(request):
     form = PostCreateForm()
     if request.method == 'POST':
@@ -50,9 +51,9 @@ def post_create_view(request):
         
     return render(request,'a_posts/post_create.html',{'form':form})
 
-
+@login_required
 def post_delete_view(request,pk):
-    post = get_object_or_404(POST,id=pk)
+    post = get_object_or_404(POST,id=pk,author=request.user)
     
     if request.method== 'POST':
         post.delete()
@@ -61,9 +62,9 @@ def post_delete_view(request,pk):
         return redirect('home')
     return render(request,'a_posts/post_delete.html',{'post':post})
 
-
+@login_required
 def edit_post_view(request,pk):
-    post = get_object_or_404(POST,id=pk)
+    post = get_object_or_404(POST,id=pk,author=request.user)
     form = PostEditForm(instance=post)
     
     if request.method== 'POST':
