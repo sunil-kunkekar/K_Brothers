@@ -43,6 +43,7 @@ def post_create_view(request):
             artist = find_artist[0].text.strip() 
             post.artist = artist
             
+            post.author = request.user
             post.save()
             form.save_m2m()
             return redirect('home')
