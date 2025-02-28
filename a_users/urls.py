@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('profile/', profile_view, name='profile'),
     path('profile/edit/',profile_edit_view, name='profile-edit'),
+    path('<username>/', profile_view, name="userprofile"),
     
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

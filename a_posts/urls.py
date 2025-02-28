@@ -10,6 +10,5 @@ urlpatterns = [
     
     path('detail_post_page/<pk>/',post_detail_page_view, name='post'),
     path('category/<tag>/',home_view, name='category'),
-    
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
