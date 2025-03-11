@@ -84,9 +84,12 @@ def post_detail_page_view(request,pk):
     post = get_object_or_404(POST,id=pk)
     
     commentform = CommentCreateForm()
+    replyform = ReplyCreateForm()
+    
     context = {
         'post':post,
-        'commentform':commentform
+        'commentform':commentform,
+        'replyform':replyform
     }
     
     return render(request,'a_posts/post_detail.html',context)
@@ -95,7 +98,7 @@ def post_detail_page_view(request,pk):
 @login_required 
 def comment_sent(request, pk):
     post = get_object_or_404(POST, id=pk)
-    #replyform = ReplyCreateForm()
+    
     
     if request.method == 'POST':
         form = CommentCreateForm(request.POST)
@@ -117,3 +120,28 @@ def comment_delete_view(request,pk):
         
         return redirect('post',post.parent_post.id)
     return render(request,'a_posts/comment_delete.html',{'comment':post})
+
+@login_required
+def reply_sent(request, pk):
+    comment = get_object_or_404(Comment, id=pk)
+    # replyform = ReplyCreateForm()
+    
+    if request.method == 'POST':
+        form = ReplyCreateForm(request.POST)
+        if form.is_valid:
+            reply = form.save(commit=False)
+            reply.author = request.user
+            reply.parent_comment = comment            
+            reply.save()
+# def reply_sent(request, pk):
+#     comment = get_object_or_404(Comment, id=pk)
+    
+#     if request.method == 'POST':
+#         form = ReplyCreateForm(request.POST)
+#         if form.is_valid:
+#             reply = form.save(commit=False)
+#             reply.author = request.user
+#             reply.parent_comment = comment           
+#             reply.save()
+            
+        return redirect('post', comment.parent_post.id)
