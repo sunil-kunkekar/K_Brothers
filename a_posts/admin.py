@@ -6,3 +6,4 @@ admin.site.register(POST)
 
 admin.site.register(Tag)
 admin.site.register(Comment)
+admin.site.register(Reply)
