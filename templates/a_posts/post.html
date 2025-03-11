@@ -34,7 +34,9 @@
                 Comments
                 <span class="font-light text-gray-500 ml-1">{{post.comments.count}}</span>
                 {% else %}
-                Add Comment
+                    {% if user.is_authenticated %}
+                    Add Comment
+                    {% endif %}
                 {% endif %}
             </a>
             <div class="flex items-center gap-4 [&>a:hover]:underline">
