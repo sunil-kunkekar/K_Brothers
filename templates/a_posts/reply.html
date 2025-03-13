@@ -8,6 +8,7 @@
         {% else %}
         <img class="w-8 h-8 object-cover rounded-full" src="{% static 'images/avatar_default.svg' %}">
         {% endif %}
+        
         <div class="w-fit">
             {% if reply.author %}
             <a class="block" href="">
@@ -23,7 +24,7 @@
     <div class="flex items-center gap-4 [&>a:hover]:underline">
         {% comment %} {% include 'snippets/likes_reply.html' %} {% endcomment %}
         {% if user.is_authenticated and reply.author == user %}
-        <a href="">Delete</a>
+        <a href="{% url 'reply-delete' reply.id %}">Delete</a>
         {% endif %}
     </div>
 </reply> 
