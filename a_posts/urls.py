@@ -11,7 +11,7 @@ urlpatterns = [
     path('detail_post_page/<pk>/',post_detail_page_view, name='post'),
     path('category/<tag>/',home_view, name='category'),
     
-    path('commentsent/<pk>/', comment_sent, name='comment-sent'),
+    path('comment_sent/<pk>/', comment_sent, name='comment-sent'),
     path('comment/delete/<pk>/',comment_delete_view, name='comment-delete'),
     
     path('reply-sent/<pk>/',reply_sent, name='reply-sent'),
