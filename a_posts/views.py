@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from django.http import HttpResponse
 # Create your views here.
 def home_view(request, tag=None):
     if tag:
@@ -158,4 +158,4 @@ def like_post(request,pk):
             post.likes.remove(request.user)
         else:
             post.likes.add(request.user)
-    return redirect('post',post.id)
+    return render(request,'snippets/likes.html',{'post':post})

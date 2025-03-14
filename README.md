@@ -13,17 +13,17 @@ Home Page (Stream of Posts):
 
 Web Scraper Integration:
     A custom web scraper is built to fetch images from Flickr, allowing users to:
-        Select an image
-        Add a personal caption
-        Categorize the post using predefined tags
+    Select an image
+    Add a personal caption
+    Categorize the post using predefined tags
 
 Post Interactions:
     Comments & Replies:
         Users can comment on posts and reply to comments
 
     Likes System:
-        Users can like posts, comments, and replies
-        Works without page refresh (achieved using Django's asynchronous capabilities)
+    Users can like posts, comments, and replies
+    Works without page refresh (achieved using Django's asynchronous capabilities)
 
 Sidebar – Trending Insights:
     Displays the most popular posts and comments, providing users with trending content
