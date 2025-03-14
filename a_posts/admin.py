@@ -8,3 +8,6 @@ admin.site.register(Tag)
 admin.site.register(Comment)
 admin.site.register(Reply)
 admin.site.register(LikedPost)
+
+admin.site.register(LikedComment)
+admin.site.register(LikedReply)

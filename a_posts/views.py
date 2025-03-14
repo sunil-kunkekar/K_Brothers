@@ -149,13 +149,30 @@ def reply_sent(request, pk):
             
         return redirect('post', comment.parent_post.id)
     
-def like_post(request,pk):
-    post = get_object_or_404(POST,id=pk)
-    user_exist = post.likes.filter(username=request.user.username).exists()
-    
-    if post.author != request.user:
-        if user_exist:
-            post.likes.remove(request.user)
-        else:
-            post.likes.add(request.user)
-    return render(request,'snippets/likes.html',{'post':post})
+def like_toggle(model):
+    def inner_func(func):
+        def wrapper(request, *args, **kwargs):
+            post = get_object_or_404(model, id=kwargs.get('pk'))
+            user_exist = post.likes.filter(username=request.user.username).exists()
+            
+            if post.author != request.user:
+                if user_exist:
+                    post.likes.remove(request.user)
+                else:
+                    post.likes.add(request.user)
+                    
+            return func(request, post)
+        return wrapper
+    return inner_func
+
+
+@login_required
+@like_toggle(POST)
+def like_post(request, post):   
+    return render(request, 'snippets/likes.html', {'post' : post })
+
+
+@login_required
+@like_toggle(Comment)
+def like_comment(request, post):   
+    return render(request, 'snippets/likes_comment.html', {'comment' : post })
